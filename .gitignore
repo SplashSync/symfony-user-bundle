@@ -3,3 +3,5 @@
 /var/
 /.idea/
 /.php_cs.cache
+/public/
+/.gh-pages/

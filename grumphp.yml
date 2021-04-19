@@ -22,7 +22,7 @@ parameters:
     mode:           "splashsync"
 
     # For Building Splash Documentation
-    doc-enable:     false
+    doc-enable:     true
     doc-target:     '/public'
     doc-contents:   ["php-composer", "php-docker", "splash-faq"]
 
@@ -31,11 +31,6 @@ parameters:
 
     # For Building Splash Module
     mod-enable:     false
-
-grumphp:
-    tasks:
-        phpcpd:
-            triggered_by:     ['']
 
 #############################################
 # Import Config. from Generic Bundle
