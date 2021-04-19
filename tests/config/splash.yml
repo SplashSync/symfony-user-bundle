@@ -1,0 +1,14 @@
+
+################################################################################
+## Test Configuration for Splash Bundle
+splash:
+    connections:
+
+        ########################################################################
+        # Fos User Default
+        fos-user:
+            id:                 ThisIsFosUserWsId
+            key:                ThisIsNotASecretKeyForFosUser
+            name:               Serveur 1 (FosUser)
+            host:               http://toolkit.fos-user.local/ws/soap
+            connector:          standalone

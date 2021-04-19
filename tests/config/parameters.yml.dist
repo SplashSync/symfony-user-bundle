@@ -1,0 +1,8 @@
+
+parameters:
+    kernel.secret:          ThisIsNotASecretKey
+    splash_host:            http://localhost:8000
+    locale: en
+    locales:
+        - en
+        - fr
