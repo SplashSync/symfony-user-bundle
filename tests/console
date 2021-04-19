@@ -16,7 +16,7 @@ set_time_limit(0);
 require __DIR__.'/../vendor/autoload.php';
 
 $dotenv = new Dotenv();
-$dotenv->load(__DIR__.'/.env');
+$dotenv->load(__DIR__.'/../.env');
 
 $input = new ArgvInput();
 $env = $input->getParameterOption(['--env', '-e'], getenv('APP_ENV') ?: 'dev');

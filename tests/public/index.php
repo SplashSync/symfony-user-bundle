@@ -25,7 +25,7 @@ umask(0000);
 require __DIR__.'/../../vendor/autoload.php';
 
 $dotenv = new Dotenv();
-$dotenv->load(__DIR__.'/../.env');
+$dotenv->load(__DIR__.'/../../.env');
 
 $env = getenv('APP_ENV') ?: 'dev';
 $debug = '0' !== getenv('SYMFONY_DEBUG') && 'prod' !== $env;
