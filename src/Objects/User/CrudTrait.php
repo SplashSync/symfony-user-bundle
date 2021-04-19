@@ -96,7 +96,7 @@ trait CrudTrait
             try {
                 $this->manager->updateUser($this->object);
             } catch (\Throwable $throwable) {
-                Splash::log()->report($throwable);
+                return Splash::log()->err($throwable->getMessage());
             }
         }
 
