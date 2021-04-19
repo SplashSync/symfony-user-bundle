@@ -37,6 +37,8 @@ stages:
     - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/symfony/deploy.sh | sh
     # Composer Build
     - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/ci/composer.sh | sh
+    # Create Database
+    - php bin/console doctrine:schema:update --force  --no-interaction --no-debug
   script:
     ################################################################################
     # Execute Grump Travis Testsuite
