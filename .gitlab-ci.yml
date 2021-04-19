@@ -35,6 +35,8 @@ stages:
     - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/ci/configure.sh | sh
     # Composer Build
     - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/ci/composer.sh | sh
+    # Deploy Symfony
+    - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/symfony/deploy.sh | sh
     # Execute Grump Travis Testsuite
     - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/ci/grumphp.sh | sh
   after_script:
