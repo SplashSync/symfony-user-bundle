@@ -74,7 +74,7 @@
 
 
     "archive": {
-        "exclude": ["/app", "/bin", "/docs", "/tests"]
+        "exclude": ["/app", "/bin", "/docs", "/tests", "/src/Entity"]
     }
 
 }
