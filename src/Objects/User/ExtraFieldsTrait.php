@@ -15,8 +15,6 @@
 
 namespace Splash\Connectors\FosUser\Objects\User;
 
-use Sonata\UserBundle\Model\UserInterface;
-
 /**
  * Extra Fields - Override this trait to Add Extra Fields
  */
@@ -38,6 +36,8 @@ trait ExtraFieldsTrait
      * @param string $fieldName Field Identifier / Name
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function getExtraFields($key, $fieldName)
     {
@@ -50,6 +50,8 @@ trait ExtraFieldsTrait
      * @param mixed  $fieldData Field Data
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function setExtraFields($fieldName, $fieldData)
     {

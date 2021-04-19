@@ -107,8 +107,7 @@ trait SonataMetaTrait
         if (!($this->object instanceof UserInterface)) {
             return 2;
         }
-        switch ($this->object->getGender())
-        {
+        switch ($this->object->getGender()) {
             case UserInterface::GENDER_MALE:
                 return 0;
             case UserInterface::GENDER_FEMALE:

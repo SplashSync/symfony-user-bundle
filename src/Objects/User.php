@@ -38,6 +38,7 @@ class User extends AbstractStandaloneObject
     use User\CoreTrait;
     use User\SonataTrait;
     use User\SonataMetaTrait;
+    use User\ExtraFieldsTrait;
     use User\ObjectListTrait;
 
     //====================================================================//
