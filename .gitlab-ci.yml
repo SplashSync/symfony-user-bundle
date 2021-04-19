@@ -73,9 +73,18 @@ pages:
       - docker:dind
     ################################################################################
     # Run Test Script
+    before_script:
+      ################################################################################
+      # Configure Environnement
+      - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/ci/configure.sh | sh
+      # Deploy Symfony
+      - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/symfony/deploy.sh | sh
+      # Composer Build
+      - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/ci/composer.sh | sh
+  ################################################################################
+  # Run Test Script
     script:
-      # Run Composer to Build deps
-      - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/ci/composer.sh  | bash
+      ################################################################################
       # Build Manifest
       - php vendor/bin/grumphp run --tasks=build-manifest
       # Build Documentation
