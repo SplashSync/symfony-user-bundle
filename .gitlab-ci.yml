@@ -19,6 +19,7 @@
 # Defined Pipeline Stages
 stages:
   - tests
+  - deploy
 
 ################################################################
 # Functional Tests
@@ -52,3 +53,26 @@ tests:php-7.3:
 tests:php-7.2:
   image: registry.gitlab.com/badpixxel-projects/php-sdk:php-7.2
   <<: *core_tests
+
+#################################################################
+## Build Documentation
+#################################################################
+pages:
+    image:    registry.gitlab.com/badpixxel-projects/php-sdk:jekyll
+    stage:    deploy
+    tags:
+      - Dedicated
+    services:
+      - docker:dind
+    ################################################################################
+    # Run Test Script
+    script:
+      # Run Composer to Build deps
+      - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/ci/composer.sh  | bash
+      # Build Manifest
+      - php vendor/bin/grumphp run --tasks=build-manifest
+      # Build Documentation
+      - php vendor/bin/grumphp run --tasks=build-docs
+    artifacts:
+      paths:
+        - public
