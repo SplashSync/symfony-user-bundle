@@ -30,20 +30,28 @@ trait CoreTrait
         //====================================================================//
         // Username
         $this->fieldsFactory()->create(SPL_T_VARCHAR)
-            ->Identifier("username")
-            ->Name("Username")
+            ->identifier("username")
+            ->name("Username")
             ->isLogged()
-            ->MicroData("http://schema.org/Organization", "legalName")
+            ->microData("http://schema.org/Organization", "legalName")
             ->isRequired()
             ->isListed();
 
         //====================================================================//
         // Email
-        $this->fieldsFactory()->Create(SPL_T_EMAIL)
-            ->Identifier("email")
-            ->Name("Email")
-            ->MicroData("http://schema.org/ContactPoint", "email")
+        $this->fieldsFactory()->create(SPL_T_EMAIL)
+            ->identifier("email")
+            ->name("Email")
+            ->microData("http://schema.org/ContactPoint", "email")
             ->isRequired()
+            ->isListed();
+
+        //====================================================================//
+        // Active
+        $this->fieldsFactory()->create(SPL_T_BOOL)
+            ->identifier("enabled")
+            ->name("Enabled")
+            ->microData("http://schema.org/Organization", "active")
             ->isListed();
     }
 
@@ -63,6 +71,10 @@ trait CoreTrait
             case 'username':
             case 'email':
                 $this->getGeneric($fieldName);
+
+                break;
+            case 'enabled':
+                $this->getGenericBool($fieldName);
 
                 break;
             default:
@@ -88,6 +100,10 @@ trait CoreTrait
             case 'username':
             case 'email':
                 $this->setGeneric($fieldName, $fieldData);
+
+                break;
+            case 'enabled':
+                $this->setGenericBool($fieldName, $fieldData);
 
                 break;
             default:

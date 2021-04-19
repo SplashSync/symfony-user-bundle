@@ -36,6 +36,8 @@ class User extends AbstractStandaloneObject
     // FOS USER Traits
     use User\CrudTrait;
     use User\CoreTrait;
+    use User\SonataTrait;
+    use User\SonataMetaTrait;
     use User\ObjectListTrait;
 
     //====================================================================//
