@@ -39,29 +39,4 @@ class DoctrineEventsSubscriber extends AbstractEventSubscriber
      * {@inheritdoc}
      */
     protected static $commentPrefix = "FOS User";
-//
-//    //====================================================================//
-//    //  CONSTRUCTOR
-//    //====================================================================//
-//
-//    /**
-//     * Service Constructor
-//     *
-//     * @param ConnectorsManager $manager
-//     */
-//    public function __construct(ConnectorsManager $manager)
-//    {
-//        parent::__construct($manager);
-//        // Use Kernel Events for Update, better Compatibility
-//        static::setState(Events::postUpdate, false);
-//    }
-//
-//    /**
-//     * On Akeneo Pre Load Fixtures
-//     */
-//    public function preLoadFixtures(): void
-//    {
-//        static::setState(Events::postPersist, false);
-//        static::setState(Events::postUpdate, false);
-//    }
 }
