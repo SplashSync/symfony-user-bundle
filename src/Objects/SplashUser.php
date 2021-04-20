@@ -24,7 +24,7 @@ use Splash\Models\Objects\GenericFieldsTrait;
 use Splash\Models\Objects\IntelParserTrait;
 use Splash\Models\Objects\ListsTrait;
 
-class User extends AbstractStandaloneObject
+class SplashUser extends AbstractStandaloneObject
 {
     //====================================================================//
     // Splash Php Core Traits

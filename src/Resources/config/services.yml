@@ -5,8 +5,7 @@ services:
 
     ########################################################################
     # FOS Users Standalone Object Service
-    Splash\Connectors\FosUser\Objects\User:
-        public:     true
+    Splash\Connectors\FosUser\Objects\SplashUser:
         tags:
           # Register Faker Standalone Connector Objects
           - { name: "splash.standalone.object", type : "ThirdParty" }
