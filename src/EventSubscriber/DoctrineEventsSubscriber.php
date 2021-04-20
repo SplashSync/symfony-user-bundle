@@ -15,10 +15,8 @@
 
 namespace Splash\Connectors\FosUser\EventSubscriber;
 
-use Doctrine\ORM\Events;
 use FOS\UserBundle\Model\UserInterface;
 use Splash\Bundle\Helpers\Doctrine\AbstractEventSubscriber;
-use Splash\Bundle\Services\ConnectorsManager;
 
 /**
  * Splash Fos User Doctrine Events Subscriber

@@ -20,9 +20,17 @@ doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
     orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        entity_managers:
+            default:
+                mappings:
+                    SonataUserBundle: ~
+                    FOSUserBundle: ~
+                    # Force directory for tests entities (relative to bundle path)
+                    SplashFosUserBundle:
+                        type: "annotation"
+                        dir: '%kernel.project_dir%/tests/Entity'
+                        prefix: 'Splash\Connectors\FosUser\Entity'
+                        is_bundle: false
 
 # Twig Configuration
 twig:
