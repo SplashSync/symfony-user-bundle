@@ -16,15 +16,15 @@
 namespace Splash\Connectors\FosUser\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Sonata\UserBundle\Entity\BaseUser;
+use Sonata\UserBundle\Entity\BaseGroup;
 
 /**
  * Only Used in Tests
  *
  * @ORM\Entity
- * @ORM\Table(name="fos_user__user")
+ * @ORM\Table(name="fos_user__group")
  */
-class User extends BaseUser
+class TestGroup extends BaseGroup
 {
     /**
      * @ORM\Id

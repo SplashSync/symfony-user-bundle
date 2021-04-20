@@ -98,9 +98,9 @@ fos_user:
     from_email:
         address:        noreply@splashsync.com
         sender_name:    Splash Sync
-    user_class:         Splash\Connectors\FosUser\Entity\User
+    user_class:         Splash\Connectors\FosUser\Entity\TestUser
     group:
-        group_class:    Splash\Connectors\FosUser\Entity\Group
+        group_class:    Splash\Connectors\FosUser\Entity\TestGroup
         group_manager:  sonata.user.orm.group_manager
     service:
         user_manager:   sonata.user.orm.user_manager
@@ -110,5 +110,5 @@ sonata_user:
     security_acl:   false
     manager_type:   orm
     class:
-        user:   Splash\Connectors\FosUser\Entity\User
-        group:  Splash\Connectors\FosUser\Entity\Group
+        user:   Splash\Connectors\FosUser\Entity\TestUser
+        group:  Splash\Connectors\FosUser\Entity\TestGroup
