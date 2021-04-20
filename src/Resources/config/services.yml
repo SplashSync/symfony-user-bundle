@@ -16,4 +16,4 @@ services:
         arguments:
             - "@splash.connectors.manager"
         tags:
-            - 'doctrine.event_subscriber'
+            - { name: 'doctrine.event_subscriber', priority: -1 }
