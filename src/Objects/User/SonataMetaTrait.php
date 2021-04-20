@@ -60,7 +60,8 @@ trait SonataMetaTrait
             ->microData("http://schema.org/Person", "gender")
             ->description("Social Title : 0 => Male // 1 => Female // 2 => Neutral")
             ->addChoices(array("0" => "Male", "1" => "Female", "2" => "Unknown"))
-            ->isNotTested();
+            ->isReadOnly()
+        ;
     }
 
     /**
