@@ -15,7 +15,7 @@
 
 namespace Splash\Connectors\FosUser\Objects;
 
-use Doctrine\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectRepository;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
@@ -90,10 +90,10 @@ class SplashUser extends AbstractStandaloneObject
     /**
      * Splash Object Service Constructor
      *
-     * @param UserManagerInterface $manager
-     * @param ObjectManager        $objectManager
+     * @param UserManagerInterface   $manager
+     * @param EntityManagerInterface $objectManager
      */
-    public function __construct(UserManagerInterface $manager, ObjectManager $objectManager)
+    public function __construct(UserManagerInterface $manager, EntityManagerInterface $objectManager)
     {
         $this->manager = $manager;
         /** @var class-string $userClass */
