@@ -29,6 +29,8 @@ stages:
   stage:      tests
   tags:
     - Dedicated
+  reports:
+    junit: "$CI_PROJECT_DIR/*-report.xml"
   before_script:
     ################################################################################
     # Configure Environnement
@@ -45,7 +47,7 @@ stages:
     - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/ci/grumphp.sh | sh
     ################################################################################
     # Execute PhpUnit Tests
-    - php vendor/bin/phpunit
+    - php vendor/bin/phpunit --log-junit $CI_PROJECT_DIR/main-report.xml
   after_script:
     ################################################################################
     # Run After Script
