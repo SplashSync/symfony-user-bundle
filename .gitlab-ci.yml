@@ -29,8 +29,9 @@ stages:
   stage:      tests
   tags:
     - Dedicated
-  reports:
-    junit: "$CI_PROJECT_DIR/*-report.xml"
+  artifacts:
+    reports:
+      junit: "$CI_PROJECT_DIR/*-report.xml"
   before_script:
     ################################################################################
     # Configure Environnement
