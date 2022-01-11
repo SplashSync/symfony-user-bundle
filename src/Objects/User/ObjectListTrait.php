@@ -15,12 +15,31 @@
 
 namespace Splash\Connectors\FosUser\Objects\User;
 
+use Doctrine\ORM\QueryBuilder;
 use FOS\UserBundle\Model\UserInterface;
 use Splash\Bundle\Helpers\Doctrine\ObjectsListHelperTrait;
 
 trait ObjectListTrait
 {
     use ObjectsListHelperTrait;
+
+    /**
+     * Setup List Query Builder Filters
+     *
+     * @param QueryBuilder $queryBuilder
+     * @param string       $filter
+     *
+     * @return void
+     */
+    public function setObjectListFilter(QueryBuilder $queryBuilder, string $filter): void
+    {
+        $queryBuilder->andWhere($queryBuilder->expr()->orX(
+            $queryBuilder->expr()->like("c.username", ":filter"),
+            $queryBuilder->expr()->like("c.email", ":filter")
+        ))
+            ->setParameter("filter", '%'.$filter.'%')
+        ;
+    }
 
     /**
      * Transform FOS User To List Array Data

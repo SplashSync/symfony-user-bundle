@@ -35,8 +35,8 @@ services:
     ################################################################################
     # Application Container
     app:
-        image: 'registry.gitlab.com/badpixxel-projects/php-sdk:php-7.4'
-        container_name: fos-user-app
+        image: 'registry.gitlab.com/badpixxel-projects/php-sdk:php-8.0'
+        container_name:     dev.fos-user.local
         volumes:
             - symfony-var:/var/www/html/var
             - './:/var/www/html:ro'
@@ -50,7 +50,7 @@ services:
     # Splash Toolkit Container   
     toolkit:
         image: 'splashsync/toolkit'
-        container_name: fos-user-toolkit
+        container_name:     toolkit.fos-user.local
         volumes:
             # Specify Local Configuration File
             - './docker/toolkit/splash.yml:/app/config/packages/splash.yml:ro'
