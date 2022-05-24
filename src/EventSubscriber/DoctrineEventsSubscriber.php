@@ -26,17 +26,17 @@ class DoctrineEventsSubscriber extends AbstractEventSubscriber
     /**
      * {@inheritdoc}
      */
-    protected static $classMap = array(
+    protected static array $classMap = array(
         UserInterface::class => "ThirdParty",
     );
 
     /**
      * {@inheritdoc}
      */
-    protected static $username = "Symfony";
+    protected static string $username = "Symfony";
 
     /**
      * {@inheritdoc}
      */
-    protected static $commentPrefix = "FOS User";
+    protected static string $commentPrefix = "FOS User";
 }

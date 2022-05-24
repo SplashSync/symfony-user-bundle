@@ -32,9 +32,9 @@ trait CrudTrait
      *
      * @param string $objectId Object id
      *
-     * @return false|UserInterface
+     * @return null|UserInterface
      */
-    public function load($objectId)
+    public function load(string $objectId): ?UserInterface
     {
         //====================================================================//
         // Stack Trace
@@ -47,8 +47,8 @@ trait CrudTrait
         ));
         //====================================================================//
         // Check Object Entity was Found
-        if (!$user) {
-            return Splash::log()->errTrace(
+        if (!$user instanceof UserInterface) {
+            return Splash::log()->errNull(
                 ' Unable to load '.$this->getName().' ('.$objectId.').'
             );
         }
@@ -59,23 +59,37 @@ trait CrudTrait
     /**
      * Create Request Object
      *
-     * @return false|UserInterface
+     * @return null|UserInterface
      */
-    public function create()
+    public function create(): ?UserInterface
     {
         //====================================================================//
         // Stack Trace
         Splash::log()->trace();
         //====================================================================//
+        // Collect Required Fields
+        /** @var null|string $userName */
+        $userName = $this->in["username"] ?? null;
+        /** @var null|string $userEmail */
+        $userEmail = $this->in["email"] ?? null;
+        if (empty($userName) || empty($userEmail)) {
+            return Splash::log()->errNull(
+                "ErrLocalFieldMissing",
+                __CLASS__,
+                __FUNCTION__,
+                "User Name or Email"
+            );
+        }
+        //====================================================================//
         // Create New User Entity
         $this->object = $this->manager->createUser();
-        $this->object->setUsername($this->in["username"]);
-        $this->object->setEmail($this->in["email"]);
+        $this->object->setUsername($userName);
+        $this->object->setEmail($userEmail);
         $this->object->setPlainPassword(uniqid());
         //====================================================================//
         // Save New User Entity
         if (!$this->update(true)) {
-            return false;
+            return null;
         }
 
         return $this->object;
@@ -86,9 +100,9 @@ trait CrudTrait
      *
      * @param bool $needed Is This Update Needed
      *
-     * @return false|string Object Id
+     * @return null|string Object ID
      */
-    public function update($needed)
+    public function update(bool $needed): ?string
     {
         //====================================================================//
         // Save
@@ -96,7 +110,7 @@ trait CrudTrait
             try {
                 $this->manager->updateUser($this->object);
             } catch (\Throwable $throwable) {
-                return Splash::log()->err($throwable->getMessage());
+                return Splash::log()->errNull($throwable->getMessage());
             }
         }
 
@@ -104,11 +118,9 @@ trait CrudTrait
     }
 
     /**
-     * @param null|string $objectId
-     *
-     * @return bool
+     * {@inheritdoc}
      */
-    public function delete($objectId = null)
+    public function delete(string $objectId): bool
     {
         //====================================================================//
         // Safety Check
@@ -130,12 +142,12 @@ trait CrudTrait
     /**
      * {@inheritdoc}
      */
-    public function getObjectIdentifier()
+    public function getObjectIdentifier(): ?string
     {
         if (empty($this->object->getId())) {
-            return false;
+            return null;
         }
-
+        /** @phpstan-ignore-next-line  */
         return (string) $this->object->getId();
     }
 }

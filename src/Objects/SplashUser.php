@@ -24,6 +24,9 @@ use Splash\Models\Objects\GenericFieldsTrait;
 use Splash\Models\Objects\IntelParserTrait;
 use Splash\Models\Objects\ListsTrait;
 
+/**
+ * Splash Object for FOS User Entities
+ */
 class SplashUser extends AbstractStandaloneObject
 {
     //====================================================================//
@@ -48,33 +51,33 @@ class SplashUser extends AbstractStandaloneObject
     /**
      * {@inheritdoc}
      */
-    protected static $NAME = 'Symfony User';
+    protected static string $name = 'Symfony User';
 
     /**
      * {@inheritdoc}
      */
-    protected static $DESCRIPTION = 'Sf User';
+    protected static string $description = 'Sf User';
 
     /**
      * {@inheritdoc}
      */
-    protected static $ICO = 'fa fa-user';
+    protected static string $ico = 'fa fa-user';
 
     //====================================================================//
     // Private variables
     //====================================================================//
 
     /**
-     * @var UserInterface
+     * @phpstan-var  UserInterface
      */
-    protected $object;
+    protected object $object;
 
     /**
      * FOS User Manager
      *
      * @var UserManagerInterface
      */
-    protected $manager;
+    protected UserManagerInterface $manager;
 
     /**
      * Users Repository
