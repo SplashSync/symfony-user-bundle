@@ -24,6 +24,11 @@ use Splash\Models\Objects\GenericFieldsTrait;
 use Splash\Models\Objects\IntelParserTrait;
 use Splash\Models\Objects\ListsTrait;
 
+/**
+ * Splash Object for FOS User Entities
+ *
+ * @SuppressWarnings(PHPMD.CamelCasePropertyName)
+ */
 class SplashUser extends AbstractStandaloneObject
 {
     //====================================================================//
