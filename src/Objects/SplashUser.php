@@ -16,18 +16,19 @@
 namespace Splash\Connectors\FosUser\Objects;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityRepository;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Splash\Bundle\Models\AbstractStandaloneObject;
 use Splash\Models\Objects\GenericFieldsTrait;
 use Splash\Models\Objects\IntelParserTrait;
 use Splash\Models\Objects\ListsTrait;
+use Splash\Models\Objects\PrimaryKeysAwareInterface;
 
 /**
  * Splash Object for FOS User Entities
  */
-class SplashUser extends AbstractStandaloneObject
+class SplashUser extends AbstractStandaloneObject implements PrimaryKeysAwareInterface
 {
     //====================================================================//
     // Splash Php Core Traits
@@ -39,6 +40,7 @@ class SplashUser extends AbstractStandaloneObject
     // FOS USER Traits
     use User\CrudTrait;
     use User\CoreTrait;
+    use User\PrimaryTrait;
     use User\SonataTrait;
     use User\SonataMetaTrait;
     use User\ExtraFieldsTrait;
@@ -82,7 +84,7 @@ class SplashUser extends AbstractStandaloneObject
     /**
      * Users Repository
      *
-     * @var ObjectRepository
+     * @var EntityRepository
      */
     protected $repository;
 

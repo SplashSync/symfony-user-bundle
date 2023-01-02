@@ -28,8 +28,9 @@ splash:
             host:               false
             connector:          soap
             config:
+                Extended:           true
                 WsIdentifier:       ThisIsFosUserWsId
                 WsEncryptionKey:    ThisIsNotASecretKeyForFosUser
-                WsHost:             http://fos-user-app
+                WsHost:             http://dev.fos-user.local
                 WsPath:             /tests/public/ws/splash
 

@@ -35,8 +35,9 @@ trait CoreTrait
             ->isLogged()
             ->microData("http://schema.org/Organization", "legalName")
             ->isRequired()
-            ->isListed();
-
+            ->isIndexed()
+            ->isListed()
+        ;
         //====================================================================//
         // Email
         $this->fieldsFactory()->create(SPL_T_EMAIL)
@@ -44,15 +45,17 @@ trait CoreTrait
             ->name("Email")
             ->microData("http://schema.org/ContactPoint", "email")
             ->isRequired()
-            ->isListed();
-
+            ->isPrimary()
+            ->isListed()
+        ;
         //====================================================================//
         // Active
         $this->fieldsFactory()->create(SPL_T_BOOL)
             ->identifier("enabled")
             ->name("Enabled")
             ->microData("http://schema.org/Organization", "active")
-            ->isListed();
+            ->isListed()
+        ;
     }
 
     /**

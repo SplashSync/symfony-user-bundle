@@ -58,6 +58,7 @@ trait SonataTrait
             ->Identifier("phone")
             ->name("Phone")
             ->microData("http://schema.org/Person", "telephone")
+            ->isIndexed()
         ;
         //====================================================================//
         // WebSite
