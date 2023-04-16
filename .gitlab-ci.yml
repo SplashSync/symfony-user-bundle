@@ -92,7 +92,7 @@ pages:
         # Deploy Symfony
         - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/symfony/deploy.sh | sh
         # Composer Build
-        - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/ci/composer.sh | sh
+        - composer update --no-interaction --no-scripts
   ################################################################################
   # Run Test Script
     script:
