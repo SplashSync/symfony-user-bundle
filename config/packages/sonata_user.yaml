@@ -1,0 +1,10 @@
+# Sonata User Config
+sonata_user:
+    security_acl:   false
+    manager_type:   orm
+    class:
+        user:   Splash\Connectors\SymfonyUser\Tests\Entity\User
+    resetting:
+        email:
+            address:        webmaster@localhost
+            sender_name:    Sonata Admin

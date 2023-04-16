@@ -1,0 +1,7 @@
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        url: '%env(resolve:DATABASE_URL)%'
+    orm:
+        auto_mapping: true

@@ -1,0 +1,21 @@
+
+################################################################################
+## Test Configuration for Splash Bundle
+splash:
+    connections:
+
+        ########################################################################
+        # Symfony User Default
+        symfony-user:
+            id:                 ThisIsSfUserWsId
+            key:                ThisIsNotASecretKeyForSfUser
+            name:               Symfony Users
+            host:               http://toolkit.symfony-user.local/ws/soap
+            connector:          standalone
+
+
+################################################################################
+## Test Configuration for Symfony User Bundle
+splash_symfony_user:
+    class:
+        user:   Splash\Connectors\SymfonyUser\Tests\Entity\User
