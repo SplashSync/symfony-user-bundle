@@ -4,15 +4,17 @@ services:
         autowire: true
 
     ########################################################################
-    # FOS Users Standalone Object Service
-    Splash\Connectors\FosUser\Objects\SplashUser:
+    # Symfony Users Standalone Object Service
+    Splash\Connectors\SymfonyUser\Objects\ThirdParty:
+        arguments:
+            $userClass:     "%splash.symfony.user.class%"
         tags:
           # Register Faker Standalone Connector Objects
           - { name: "splash.standalone.object", type : "ThirdParty" }
 
     ########################################################################
-    # FOS Users Events EventSubscriber
-    Splash\Connectors\FosUser\EventSubscriber\DoctrineEventsSubscriber:
+    # SymfonyUser Users Events EventSubscriber
+    Splash\Connectors\SymfonyUser\EventSubscriber\DoctrineEventsSubscriber:
         arguments:
             - "@splash.connectors.manager"
         tags:

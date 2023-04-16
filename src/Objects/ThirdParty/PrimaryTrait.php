@@ -13,7 +13,7 @@
  *  file that was distributed with this source code.
  */
 
-namespace Splash\Connectors\FosUser\Objects\User;
+namespace Splash\Connectors\SymfonyUser\Objects\ThirdParty;
 
 use Doctrine\ORM\QueryBuilder;
 use Splash\Client\Splash;

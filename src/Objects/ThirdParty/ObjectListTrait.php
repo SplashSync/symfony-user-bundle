@@ -13,12 +13,15 @@
  *  file that was distributed with this source code.
  */
 
-namespace Splash\Connectors\FosUser\Objects\User;
+namespace Splash\Connectors\SymfonyUser\Objects\ThirdParty;
 
 use Doctrine\ORM\QueryBuilder;
-use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Splash\Bundle\Helpers\Doctrine\ObjectsListHelperTrait;
 
+/**
+ * Manage User List Reading
+ */
 trait ObjectListTrait
 {
     use ObjectsListHelperTrait;

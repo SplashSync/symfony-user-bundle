@@ -1,0 +1,12 @@
+
+services:
+    _defaults:
+        autowire: true
+
+    ########################################################################
+    #   AutoWire for Standalone Object Sonata User Extension
+    Splash\Connectors\SymfonyUser\Extensions\Sonata\:
+        resource: '../../Extensions/Sonata'
+        tags:
+          # Register Standalone Connector Object Extension
+          - { name: "splash.standalone.extension" }

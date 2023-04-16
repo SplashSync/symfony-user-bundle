@@ -13,7 +13,9 @@
  *  file that was distributed with this source code.
  */
 
-namespace Splash\Connectors\FosUser\Objects\User;
+namespace Splash\Connectors\SymfonyUser\Objects\ThirdParty;
+
+use Splash\Models\Helpers\InlineHelper;
 
 /**
  * Core Fields (Required)
@@ -49,6 +51,13 @@ trait CoreTrait
             ->isListed()
         ;
         //====================================================================//
+        // Roles
+        $this->fieldsFactory()->create(SPL_T_INLINE)
+            ->identifier("roles")
+            ->name("User Roles")
+            ->isReadOnly()
+        ;
+        //====================================================================//
         // Active
         $this->fieldsFactory()->create(SPL_T_BOOL)
             ->identifier("enabled")
@@ -66,7 +75,7 @@ trait CoreTrait
      *
      * @return void
      */
-    protected function getCoreFields($key, $fieldName)
+    protected function getCoreFields(string $key, string $fieldName)
     {
         //====================================================================//
         // READ Fields
@@ -74,6 +83,10 @@ trait CoreTrait
             case 'username':
             case 'email':
                 $this->getGeneric($fieldName);
+
+                break;
+            case 'roles':
+                $this->out[$fieldName] = InlineHelper::fromArray($this->object->getRoles());
 
                 break;
             case 'enabled':
@@ -91,11 +104,11 @@ trait CoreTrait
      * Write Given Fields
      *
      * @param string $fieldName Field Identifier / Name
-     * @param mixed  $fieldData Field Data
+     * @param null|string  $fieldData Field Data
      *
      * @return void
      */
-    protected function setCoreFields($fieldName, $fieldData)
+    protected function setCoreFields(string $fieldName, ?string $fieldData)
     {
         //====================================================================//
         // WRITE Field
@@ -105,6 +118,23 @@ trait CoreTrait
                 $this->setGeneric($fieldName, $fieldData);
 
                 break;
+            default:
+                return;
+        }
+        unset($this->in[$fieldName]);
+    }
+
+    /**
+     * Write Given Fields
+     *
+     * @param string $fieldName Field Identifier / Name
+     * @param null|bool  $fieldData Field Data
+     *
+     * @return void
+     */
+    protected function setCoreBoolFields(string $fieldName, ?bool $fieldData)
+    {
+        switch ($fieldName) {
             case 'enabled':
                 $this->setGenericBool($fieldName, $fieldData);
 
@@ -114,4 +144,5 @@ trait CoreTrait
         }
         unset($this->in[$fieldName]);
     }
+
 }

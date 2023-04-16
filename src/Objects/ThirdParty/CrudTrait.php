@@ -13,13 +13,13 @@
  *  file that was distributed with this source code.
  */
 
-namespace Splash\Connectors\FosUser\Objects\User;
+namespace Splash\Connectors\SymfonyUser\Objects\ThirdParty;
 
-use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Splash\Client\Splash;
 
 /**
- * FOS User CRUD
+ * Symfony User CRUD
  */
 trait CrudTrait
 {
@@ -81,8 +81,14 @@ trait CrudTrait
             );
         }
         //====================================================================//
+        // Safety Check
+        $className = $this->repository->getClassName();
+        if (!$className || !class_exists($className)) {
+            return null;
+        }
+        //====================================================================//
         // Create New User Entity
-        $this->object = $this->manager->createUser();
+        $this->object = new $className();
         $this->object->setUsername($userName);
         $this->object->setEmail($userEmail);
         $this->object->setPlainPassword(uniqid());
@@ -108,7 +114,8 @@ trait CrudTrait
         // Save
         if ($needed) {
             try {
-                $this->manager->updateUser($this->object);
+                $this->manager->persist($this->object);
+                $this->manager->flush();
             } catch (\Throwable $throwable) {
                 return Splash::log()->errNull($throwable->getMessage());
             }
@@ -133,7 +140,8 @@ trait CrudTrait
         if ($user) {
             //====================================================================//
             // Delete
-            $this->manager->deleteUser($user);
+            $this->manager->remove($user);
+            $this->manager->flush();
         }
 
         return true;

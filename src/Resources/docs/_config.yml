@@ -20,13 +20,13 @@
 ################################################################################
 
 # Title of the Bundle / Module
-title: FOS User Connector
+title: Symfony User Connector
 # Subtitle of the Site (Generaly DOC)
 subtitle: DOC
 # the subpath of your site, e.g. /blog
-baseurl: "/fos-user-bundle"
+baseurl: "/symfony-user-bundle"
 # Description of the Bundle/Module
-description:    "FOS User Connector for Splash Sync"
+description:    "Symfony User Connector for Splash Sync"
 # Package Code on Packagist
-package:    "splash/fos-user-bundle"
+package:    "splash/symfony-user-bundle"
 
