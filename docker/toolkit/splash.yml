@@ -20,17 +20,17 @@ splash:
     connections:
         
         ########################################################################
-        # Fos User Default
-        fos-user:
-            id:                 ThisIsFosUserWsId
-            key:                ThisIsNotASecretKeyForFosUser
-            name:               Serveur 1 (FosUser)
+        # Symfony User Default
+        symfony-user:
+            id:                 ThisIsSfUserWsId
+            key:                ThisIsNotASecretKeyForSfUser
+            name:               Serveur 1 (Symfony Users)
             host:               false
             connector:          soap
             config:
                 Extended:           true
-                WsIdentifier:       ThisIsFosUserWsId
-                WsEncryptionKey:    ThisIsNotASecretKeyForFosUser
-                WsHost:             http://dev.fos-user.local
-                WsPath:             /tests/public/ws/splash
+                WsIdentifier:       ThisIsSfUserWsId
+                WsEncryptionKey:    ThisIsNotASecretKeyForSfUser
+                WsHost:             http://app.symfony-user.local
+                WsPath:             /ws/splash
 

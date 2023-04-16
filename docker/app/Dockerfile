@@ -1,4 +1,3 @@
-#!/bin/bash
 ################################################################################
 #
 #  This file is part of SplashSync Project.
@@ -16,16 +15,8 @@
 #
 ################################################################################
 
-set -e
+FROM registry.gitlab.com/badpixxel-projects/php-sdk:php-8.1
 
-################################################################################
-echo "Flush Symfony cache"
-rm -Rf var/cache/*
-chown -R www-data:www-data /var/www/html/var
+COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
 
-################################################################################
-echo "Enable Mod Rewrite"
-a2enmod rewrite
-
-echo "Serving App..."
-exec apache2-foreground
+RUN a2enmod rewrite
