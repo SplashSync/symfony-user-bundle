@@ -13,13 +13,13 @@
  *  file that was distributed with this source code.
  */
 
-namespace Splash\Connectors\FosUser\EventSubscriber;
+namespace Splash\Connectors\SymfonyUser\EventSubscriber;
 
-use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Splash\Bundle\Helpers\Doctrine\AbstractEventSubscriber;
 
 /**
- * Splash Fos User Doctrine Events Subscriber
+ * Splash Symfony User Doctrine Events Subscriber
  */
 class DoctrineEventsSubscriber extends AbstractEventSubscriber
 {
@@ -38,5 +38,5 @@ class DoctrineEventsSubscriber extends AbstractEventSubscriber
     /**
      * {@inheritdoc}
      */
-    protected static string $commentPrefix = "FOS User";
+    protected static string $commentPrefix = "Symfony User";
 }
