@@ -27,8 +27,8 @@ variables:
 ################################################################
 # Defined Pipeline Stages
 stages:
-  - tests
   - deploy
+  - tests
 
 ################################################################
 # Functional Tests
@@ -76,31 +76,46 @@ tests:php-8.0:
 #################################################################
 ## Build Documentation
 #################################################################
+#pages:
+#    image:    registry.gitlab.com/badpixxel-projects/php-sdk:jekyll
+#    stage:    deploy
+#    tags:
+#      - Dedicated
+#    services:
+#      - docker:dind
+#    ################################################################################
+#    # Run Test Script
+#    before_script:
+#        ################################################################################
+#        # Configure Environnement
+#        - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/ci/configure.sh | sh
+#        # Deploy Symfony
+#        - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/symfony/deploy.sh | sh
+#        # Composer Build
+#        - composer update --no-interaction --no-scripts
+#  ################################################################################
+#  # Run Test Script
+#    script:
+#        ################################################################################
+#        # Build Manifest
+#        - php vendor/bin/grumphp run --tasks=build-manifest
+#        # Build Documentation
+#        - php vendor/bin/grumphp run --tasks=build-docs
+#    artifacts:
+#        paths:
+#            - public
+
+#################################################################
+## Build Documentation
+#################################################################
 pages:
-    image:    registry.gitlab.com/badpixxel-projects/php-sdk:jekyll
-    stage:    deploy
-    tags:
-      - Dedicated
-    services:
-      - docker:dind
+    image:      jekyll/minimal:latest
+    stage:      deploy
+    tags:       [ Dedicated-Docker ]
     ################################################################################
     # Run Test Script
-    before_script:
-        ################################################################################
-        # Configure Environnement
-        - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/ci/configure.sh | sh
-        # Deploy Symfony
-        - curl -s https://raw.githubusercontent.com/BadPixxel/Php-Sdk/main/symfony/deploy.sh | sh
-        # Composer Build
-        - composer update --no-interaction --no-scripts
-  ################################################################################
-  # Run Test Script
     script:
-        ################################################################################
-        # Build Manifest
-        - php vendor/bin/grumphp run --tasks=build-manifest
-        # Build Documentation
-        - php vendor/bin/grumphp run --tasks=build-docs
+        - wget -qO - https://gitlab.com/badpixxel-robo/jekyll/-/raw/main/scripts/gitlab-pages.sh | sh
     artifacts:
         paths:
             - public
