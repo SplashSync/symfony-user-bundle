@@ -6,3 +6,4 @@
 /public/
 /.gh-pages/
 /.php-cs-fixer.cache
+/.phpunit.result.cache

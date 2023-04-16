@@ -72,12 +72,12 @@ class MetadataExtension implements ObjectExtensionInterface
         switch ($fieldId) {
             case 'createdAt':
                 $date = $object->getCreatedAt();
-                $fieldData = $date ? $date->format(SPL_T_DATECAST) : "";
+                $fieldData = $date ? $date->format(SPL_T_DATETIMECAST) : "";
 
                 return true;
             case 'updatedAt':
                 $date = $object->getUpdatedAt();
-                $fieldData = $date ? $date->format(SPL_T_DATECAST) : "";
+                $fieldData = $date ? $date->format(SPL_T_DATETIMECAST) : "";
 
                 return true;
             default:

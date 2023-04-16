@@ -10,7 +10,7 @@
     convertWarningsToExceptions = "true"
     processIsolation            = "false"
     stopOnFailure               = "true"
-    bootstrap                   = "vendor/autoload.php" 
+    bootstrap                   = "tests/bootstrap.php"
     verbose                     = "true"
     timeoutForLargeTests        = "10"  
 >
@@ -33,10 +33,11 @@
     </filter>
 
     <php>
-        <server name="KERNEL_CLASS" value="Kernel" />
-        <env    name="DATABASE_URL" value="sqlite:///%kernel.project_dir%/var/data.db" />
+        <server name="KERNEL_CLASS" value="Splash\Connectors\SymfonyUser\Tests\Kernel" />
+        <env    name="DATABASE_URL" value="mysql://root:SPLASH_CI@mariadb/SymfonyUsers" />
+        <env    name="APP_DEBUG" value="false" />
         <env    name="SYMFONY_DEPRECATIONS_HELPER" value="disabled" force="true"/>
-        <server name="SERVER_NAME" value="http://localhost:8000"/>
+        <server name="SERVER_NAME" value="http://localhost"/>
         <const  name="SPLASH_DEBUG" value="true" />
         <server name="SPLASH_TRAVIS" value="true" />
     </php>

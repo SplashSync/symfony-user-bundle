@@ -16,35 +16,23 @@
         }
     ],
 
-    "config": {
-        "preferred-install":                "dist",
-        "allow-plugins": {
-            "phpro/grumphp": true
-        }
-    },
-    
     "autoload": {
         "psr-4": {
-            "Splash\\Connectors\\FosUser\\":     "src/"
+            "Splash\\Connectors\\SymfonyUser\\":            "src/"
         }
     },
     
     "autoload-dev": {
-        "classmap": [
-            "tests/Kernel.php"
-        ],
+        "psr-4": {
+           "Splash\\Connectors\\SymfonyUser\\Tests\\":     "tests/"
+        },
         "files":    [
-            "vendor/splash/phpcore/inc/Splash.Inc.php",
-            "vendor/splash/php-bundle/src/Tests/KernelTestCase.php"
-
-        ],
-       "psr-4": {
-           "Splash\\Connectors\\FosUser\\Entity\\":     "tests/Entity/"
-        }
+            "vendor/splash/phpcore/inc/Splash.Inc.php"
+        ]
     },
 
     "require": {
-        "php":                                          "^7.4|^8.0",
+        "php":                                          "^8.0",
         "splash/php-bundle":                            "dev-master"
     },
     
@@ -52,22 +40,25 @@
         "badpixxel/php-sdk":                            "~2.0",
         "splash/console":                               "dev-master",
 
-        "symfony/symfony":                              "^4.4",
-        "symfony/monolog-bundle":                       "*",
+        "symfony/http-kernel":                          "^5.4",
+        "symfony/framework-bundle":                     "^5.4",
+        "symfony/runtime":                              "^5.4",
+        "symfony/debug-pack":                           "^1.0",
+        "symfony/profiler-pack":                        "^1.0",
         "symfony/phpunit-bridge":                       "*",
-        "symfony/swiftmailer-bundle":                   "*",
-        "monolog/monolog":                              "^1.0",
+        "monolog/monolog":                              "^2.0",
 
         "doctrine/orm":                                 "^2.5",
         "doctrine/doctrine-bundle":                     "^1.6|^2.0",
 
-        "sonata-project/user-bundle":                   "^4.0",
+        "sonata-project/user-bundle":                   "^5.0",
         "sonata-project/doctrine-orm-admin-bundle":     "*"
     },
 
     "scripts": {
         "auto-scripts": [
-            "php tests/console cache:clear",
+            "php bin/console cache:clear",
+            "php bin/console assets:install",
             "cd var/cache/dev && ln -sf testsKernelDevDebugContainer.xml testContainer.xml"
         ],
         "post-install-cmd": [
@@ -78,6 +69,13 @@
         ]
     },
 
+    "config": {
+        "preferred-install":                "dist",
+        "allow-plugins": {
+            "phpro/grumphp":        true,
+            "symfony/runtime":      true
+        }
+    },
 
     "archive": {
         "exclude": ["/app", "/bin", "/docs", "/tests", "/src/Entity"]
