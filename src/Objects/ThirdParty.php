@@ -17,13 +17,12 @@ namespace Splash\Connectors\SymfonyUser\Objects;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Splash\Bundle\Models\AbstractStandaloneObject;
 use Splash\Models\Objects\GenericFieldsTrait;
 use Splash\Models\Objects\IntelParserTrait;
 use Splash\Models\Objects\ListsTrait;
 use Splash\Models\Objects\PrimaryKeysAwareInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Splash Object for FOS User Entities
@@ -81,13 +80,6 @@ class ThirdParty extends AbstractStandaloneObject implements PrimaryKeysAwareInt
     protected object $object;
 
     /**
-     * User Provider
-     *
-     * @var UserProviderInterface
-     */
-    protected UserProviderInterface $provider;
-
-    /**
      * Entity Manager
      *
      * @var EntityManagerInterface
@@ -108,11 +100,10 @@ class ThirdParty extends AbstractStandaloneObject implements PrimaryKeysAwareInt
     /**
      * Splash Object Service Constructor
      *
-     * @param class-string $userClass
-     * @param UserProviderInterface $provider
+     * @param class-string           $userClass
      * @param EntityManagerInterface $objectManager
      */
-    public function __construct(string $userClass, UserProviderInterface $provider, EntityManagerInterface $objectManager)
+    public function __construct(string $userClass, EntityManagerInterface $objectManager)
     {
         $this->manager = $objectManager;
         $this->repository = $objectManager->getRepository($userClass);

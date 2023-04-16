@@ -103,8 +103,8 @@ trait CoreTrait
     /**
      * Write Given Fields
      *
-     * @param string $fieldName Field Identifier / Name
-     * @param null|string  $fieldData Field Data
+     * @param string      $fieldName Field Identifier / Name
+     * @param null|string $fieldData Field Data
      *
      * @return void
      */
@@ -127,8 +127,8 @@ trait CoreTrait
     /**
      * Write Given Fields
      *
-     * @param string $fieldName Field Identifier / Name
-     * @param null|bool  $fieldData Field Data
+     * @param string    $fieldName Field Identifier / Name
+     * @param null|bool $fieldData Field Data
      *
      * @return void
      */
@@ -144,5 +144,4 @@ trait CoreTrait
         }
         unset($this->in[$fieldName]);
     }
-
 }

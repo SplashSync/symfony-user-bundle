@@ -15,8 +15,8 @@
 
 namespace Splash\Connectors\SymfonyUser\Tests;
 
-use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 
 /**
  * Symfony Kernel for testing

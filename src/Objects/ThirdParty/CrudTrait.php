@@ -15,8 +15,8 @@
 
 namespace Splash\Connectors\SymfonyUser\Objects\ThirdParty;
 
-use Symfony\Component\Security\Core\User\UserInterface;
 use Splash\Client\Splash;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Symfony User CRUD
@@ -88,10 +88,17 @@ trait CrudTrait
         }
         //====================================================================//
         // Create New User Entity
+        /** @var UserInterface $className */
         $this->object = new $className();
-        $this->object->setUsername($userName);
-        $this->object->setEmail($userEmail);
-        $this->object->setPlainPassword(uniqid());
+        if (method_exists($this->object, "setUsername")) {
+            $this->object->setUsername($userName);
+        }
+        if (method_exists($this->object, "setEmail")) {
+            $this->object->setEmail($userEmail);
+        }
+        if (method_exists($this->object, "setPlainPassword")) {
+            $this->object->setPlainPassword(uniqid());
+        }
         //====================================================================//
         // Save New User Entity
         if (!$this->update(true)) {
@@ -152,6 +159,7 @@ trait CrudTrait
      */
     public function getObjectIdentifier(): ?string
     {
+        /** @phpstan-ignore-next-line  */
         if (empty($this->object->getId())) {
             return null;
         }

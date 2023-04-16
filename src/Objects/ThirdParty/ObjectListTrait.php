@@ -16,8 +16,8 @@
 namespace Splash\Connectors\SymfonyUser\Objects\ThirdParty;
 
 use Doctrine\ORM\QueryBuilder;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Splash\Bundle\Helpers\Doctrine\ObjectsListHelperTrait;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Manage User List Reading
@@ -54,10 +54,10 @@ trait ObjectListTrait
     protected function getObjectListArray(UserInterface $user): array
     {
         return array(
-            'id' => $user->getId(),
+            'id' => method_exists($user, "getId") ? $user->getId() : null,
             'username' => $user->getUsername(),
-            'email' => $user->getEmail(),
-            'enabled' => $user->isEnabled(),
+            'email' => method_exists($user, "getEmail") ? $user->getEmail() : null,
+            'enabled' => method_exists($user, "getEmail") ? $user->getEmail() : null,
         );
     }
 }

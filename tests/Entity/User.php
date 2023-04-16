@@ -35,25 +35,25 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @var string|null
+     * @var null|string
      */
     #[ORM\Column(type: Types::STRING, nullable: true)]
     protected ?string $firstname = null;
 
     /**
-     * @var string|null
+     * @var null|string
      */
     #[ORM\Column(type: Types::STRING, nullable: true)]
     protected ?string $lastname = null;
 
     /**
-     * @var string|null
+     * @var null|string
      */
     #[ORM\Column(type: Types::STRING, nullable: true)]
     protected ?string $phone = null;
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getFirstname(): ?string
     {
@@ -61,17 +61,19 @@ class User extends BaseUser
     }
 
     /**
-     * @param string|null $firstname
+     * @param null|string $firstname
+     *
      * @return self
      */
     public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
+
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getLastname(): ?string
     {
@@ -79,17 +81,19 @@ class User extends BaseUser
     }
 
     /**
-     * @param string|null $lastname
+     * @param null|string $lastname
+     *
      * @return self
      */
     public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
+
         return $this;
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getPhone(): ?string
     {
@@ -97,14 +101,14 @@ class User extends BaseUser
     }
 
     /**
-     * @param string|null $phone
+     * @param null|string $phone
+     *
      * @return self
      */
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
+
         return $this;
     }
-
-
 }

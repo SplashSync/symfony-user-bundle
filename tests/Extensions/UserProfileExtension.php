@@ -15,8 +15,8 @@
 
 namespace Splash\Connectors\SymfonyUser\Tests\Extensions;
 
-use Splash\Connectors\SymfonyUser\Tests\Entity\User;
 use Splash\Components\FieldsFactory;
+use Splash\Connectors\SymfonyUser\Tests\Entity\User;
 use Splash\Models\ObjectExtensionInterface;
 use Splash\Models\Objects\GenericFieldsTrait;
 use Splash\Models\Objects\UpdateFlagTrait;
@@ -106,7 +106,6 @@ class UserProfileExtension implements ObjectExtensionInterface
             default:
                 return null;
         }
-
     }
 
     /**

@@ -15,8 +15,8 @@
 
 namespace Splash\Connectors\SymfonyUser\EventSubscriber;
 
-use Symfony\Component\Security\Core\User\UserInterface;
 use Splash\Bundle\Helpers\Doctrine\AbstractEventSubscriber;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Splash Symfony User Doctrine Events Subscriber

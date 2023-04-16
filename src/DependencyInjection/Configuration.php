@@ -29,19 +29,20 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('splash_symfony_user');
+        $rootNode = $treeBuilder->getRootNode();
 
-        $treeBuilder->getRootNode()
+        /** @phpstan-ignore-next-line  */
+        $rootNode
             ->children()
-
             //====================================================================//
             // User Class
             //====================================================================//
             ->arrayNode('class')
-                ->addDefaultsIfNotSet()
-                ->children()
-                ->scalarNode('user')->isRequired()->cannotBeEmpty()
-                ->info('Your Symfony User Local Class.')
-                ->end()
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('user')->isRequired()->cannotBeEmpty()
+            ->info('Your Symfony User Local Class.')
+            ->end()
             ->end()
         ;
 
