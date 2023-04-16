@@ -23,7 +23,10 @@
 #
 # For a faster access to you container, you can add this IP to /etc/hosts
 # 
-# 172.111.0.100         toolkit.mailjet.local
+# 172.121.0.10         app.symfony-user.local
+# 172.121.0.100        toolkit.symfony-user.local
+# 172.121.0.101        db.symfony-user.local
+# 172.121.0.200        phpmyadmin.symfony-user.local
 #
 ################################################################################
 
@@ -35,29 +38,58 @@ services:
     ################################################################################
     # Application Container
     app:
-        image: 'registry.gitlab.com/badpixxel-projects/php-sdk:php-8.1'
-        container_name:     dev.fos-user.local
+        build:
+            context: ./docker/app
+        container_name:     app.symfony-user.local
         volumes:
             - symfony-var:/var/www/html/var
-            - './:/var/www/html:ro'
-        hostname:           dev.fos-user.local
-        command:            /var/www/html/docker/app/docker-entrypoint.sh
+            - './:/var/www/html'
+        hostname:           app.symfony-user.local
         networks:
-            fos-user:       { ipv4_address: 172.121.0.10, aliases: [ dev.fos-user.local ] }
-            splashsync:     { aliases: [ dev.fos-user.local ] }
+            symfony-user:   { ipv4_address: 172.121.0.10, aliases: [ app.symfony-user.local ] }
+            splashsync:     { aliases: [ app.symfony-user.local ] }
+
+    ################################################################################
+    # MariaDb Container
+    mariadb:
+        image: mariadb:10
+        container_name: db.symfony-user.local
+        logging: { driver: "none" }
+        environment:
+            - "MYSQL_ROOT_PASSWORD=SPLASH_CI"
+            - "MYSQL_DATABASE=SymfonyUsers"
+        command: [ '--sql_mode=NO_ENGINE_SUBSTITUTION' ]
+        hostname: mysql.splashsync.front
+        networks:
+            symfony-user:   { ipv4_address: 172.121.0.101, aliases: [ db.splashsync.local ] }
 
     ################################################################################
     # Splash Toolkit Container
     toolkit:
         image: 'splashsync/toolkit:alpine'
-        container_name:     toolkit.fos-user.local
+        container_name:     toolkit.symfony-user.local
         volumes:
             # Specify Local Configuration File
             - './docker/toolkit/splash.yml:/app/config/packages/splash.yml:ro'
-        hostname:           toolkit.fos-user.local
+        hostname:           toolkit.symfony-user.local
         networks:
-            fos-user:       { ipv4_address: 172.121.0.100, aliases: [ toolkit.fos-user.local ] }
-            splashsync:     { aliases: [ toolkit.fos-user.local ] }
+            symfony-user:   { ipv4_address: 172.121.0.100, aliases: [ toolkit.symfony-user.local ] }
+            splashsync:     { aliases: [ toolkit.symfony-user.local ] }
+
+    ################################################################################
+    # PhpMyAdmin Container
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:5
+        container_name: phpmyadmin.symfony-user.local
+        depends_on:
+            - mariadb
+        environment:
+            - PMA_HOST=mariadb
+            - MYSQL_USER=Splash
+            - MYSQL_ROOT_PASSWORD=SPLASH_CI
+            - MYSQL_PASSWORD=SPLASH_CI
+        networks:
+            symfony-user:        { ipv4_address: 172.121.0.200, aliases: [ phpmyadmin.symfony-user.local ] }
 
 volumes:
     symfony-var: ~
@@ -65,7 +97,7 @@ volumes:
 networks:
     ################################################################################
     # Default Private Network    
-    fos-user:
+    symfony-user:
         driver: bridge
         ipam:
             config:
