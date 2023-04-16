@@ -1,5 +1,5 @@
 {
-    "name": "splash/fos-user-bundle",
+    "name": "splash/symfony-user-bundle",
     "description": "Splash Bundle for SF Fos User",
     "license": "MIT",
     "minimum-stability": "dev",
