@@ -13,23 +13,13 @@
  *  file that was distributed with this source code.
  */
 
-namespace Splash\Connectors\FosUser\Entity;
+namespace Splash\Connectors\SymfonyUser;
 
-use Doctrine\ORM\Mapping as ORM;
-use Sonata\UserBundle\Entity\BaseGroup;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Only Used in Tests
- *
- * @ORM\Entity
- * @ORM\Table(name="fos_user__group")
+ * Splash Symfony User Connector Symfony Bundle Class
  */
-class TestGroup extends BaseGroup
+class SplashSymfonyUserBundle extends Bundle
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    protected $id;
 }
