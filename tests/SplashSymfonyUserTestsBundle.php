@@ -13,13 +13,13 @@
  *  file that was distributed with this source code.
  */
 
-namespace Splash\Connectors\FosUser;
+namespace Splash\Connectors\SymfonyUser\Tests;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Splash Fos User Connector Symfony Bundle Class
+ * Splash Symfony User Tests Bundle Class
  */
-class SplashFosUserBundle extends Bundle
+class SplashSymfonyUserTestsBundle extends Bundle
 {
 }

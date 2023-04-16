@@ -13,112 +13,15 @@
  *  file that was distributed with this source code.
  */
 
-// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+namespace Splash\Connectors\SymfonyUser\Tests;
 
-use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
+use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 
 /**
  * Symfony Kernel for testing
- *
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class Kernel extends BaseKernel
 {
-    /**
-     * Register System Bundle
-     *
-     * @return array
-     *
-     * @SuppressWarnings(PHPMD.MissingImport)
-     */
-    public function registerBundles()
-    {
-        //==============================================================================
-        // SYMFONY CORE
-        $bundles[] = new Symfony\Bundle\FrameworkBundle\FrameworkBundle();
-        $bundles[] = new Symfony\Bundle\SecurityBundle\SecurityBundle();
-        $bundles[] = new Symfony\Bundle\TwigBundle\TwigBundle();
-        $bundles[] = new Symfony\Bundle\MonologBundle\MonologBundle();
-        $bundles[] = new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle();
-
-        //==============================================================================
-        // DOCTRINE CORE
-        $bundles[] = new Doctrine\Bundle\DoctrineBundle\DoctrineBundle();
-
-        //==============================================================================
-        // Sonata Admin Admin
-        $bundles[] = new Sonata\AdminBundle\SonataAdminBundle();
-        $bundles[] = new Sonata\DatagridBundle\SonataDatagridBundle();
-        $bundles[] = new Sonata\Doctrine\Bridge\Symfony\SonataDoctrineBundle();
-        $bundles[] = new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle();
-        $bundles[] = new Knp\Bundle\MenuBundle\KnpMenuBundle();
-
-        //==============================================================================
-        // FOS USER BUNDLES
-        $bundles[] = new FOS\UserBundle\FOSUserBundle();
-        $bundles[] = new Sonata\UserBundle\SonataUserBundle();
-
-        //==============================================================================
-        // SPLASH PHP BUNDLE
-        $bundles[] = new Splash\Bundle\SplashBundle();
-        $bundles[] = new Splash\Console\ConsoleBundle();
-
-        //==============================================================================
-        // SPLASH CONNECTORS BUNDLE
-        $bundles[] = new Splash\Connectors\FosUser\SplashFosUserBundle();
-
-        //==============================================================================
-        // TEST & DEV BUNDLES
-        if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
-            $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
-
-            if ('dev' === $this->getEnvironment()) {
-                $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-            }
-
-            if (('dev' === $this->getEnvironment())
-                && class_exists("\\Symfony\\Bundle\\WebServerBundle\\WebServerBundle")) {
-                $bundles[] = new Symfony\Bundle\WebServerBundle\WebServerBundle();
-            }
-        }
-
-        return $bundles;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRootDir()
-    {
-        return __DIR__;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCacheDir()
-    {
-        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
-    }
-
-    /**
-     * @return string
-     */
-    public function getLogDir()
-    {
-        return dirname(__DIR__).'/var/logs';
-    }
-
-    /**
-     * Register Requiered Bundles
-     *
-     * @param LoaderInterface $loader
-     *
-     * @return void
-     */
-    public function registerContainerConfiguration(LoaderInterface $loader)
-    {
-        $loader->load($this->getRootDir().'/config/config.yml');
-    }
+    use MicroKernelTrait;
 }

@@ -1,0 +1,12 @@
+
+services:
+    _defaults:
+        autowire: true
+
+    ########################################################################
+    #   AutoWire for Standalone Object Test User Extension
+    Splash\Connectors\SymfonyUser\Tests\Extensions\:
+        resource: '../../Extensions'
+        tags:
+            # Register Standalone Connector Object Extension
+            - { name: "splash.standalone.extension" }
