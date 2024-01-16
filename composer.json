@@ -25,10 +25,7 @@
     "autoload-dev": {
         "psr-4": {
            "Splash\\Connectors\\SymfonyUser\\Tests\\":     "tests/"
-        },
-        "files":    [
-            "vendor/splash/phpcore/inc/Splash.Inc.php"
-        ]
+        }
     },
 
     "require": {

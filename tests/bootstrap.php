@@ -16,5 +16,5 @@
 //====================================================================//
 // PHPUNIT Bootstrap File for Splash Symfony User Bundle
 //====================================================================//
-require_once 'vendor/splash/php-bundle/src/Tests/KernelTestCase.php';
+require_once 'vendor/splash/php-bundle/src/Tests/WebTestCase.php';
 require_once 'vendor/autoload.php';
