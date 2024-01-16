@@ -163,6 +163,7 @@ trait CrudTrait
         if (empty($this->object->getId())) {
             return null;
         }
+
         /** @phpstan-ignore-next-line  */
         return (string) $this->object->getId();
     }
