@@ -16,6 +16,11 @@
 ################################################################################
 
 ################################################################
+# Include Pipeline Templates
+include:
+  - remote: 'https://raw.githubusercontent.com/BadPixxel/Php-Sdk/2.0/gitlab/pages.yaml'
+
+################################################################
 # Set any variables we need
 variables:
   # Configure mysql environment variables (https://hub.docker.com/r/_/mysql/)
@@ -27,15 +32,15 @@ variables:
 ################################################################
 # Defined Pipeline Stages
 stages:
-  - tests
-  - deploy
+  - Tests
+  - Builds
 
 ################################################################
 # Functional Tests
 ################################################################
 
 .core_tests:    &core_tests
-    stage:      tests
+    stage:      Tests
     tags:
       - Dedicated
     services:
@@ -73,17 +78,17 @@ tests:php-8.0:
     image: registry.gitlab.com/badpixxel-projects/php-sdk:php-8.0
     <<: *core_tests
 
-#################################################################
-## Build Documentation
-#################################################################
-pages:
-    image:      jekyll/minimal:latest
-    stage:      deploy
-    tags:       [ Dedicated-Docker ]
-    ################################################################################
-    # Run Test Script
-    script:
-        - wget -qO - https://gitlab.com/badpixxel-robo/jekyll/-/raw/2.0/scripts/gitlab-pages.sh | sh
-    artifacts:
-        paths:
-            - public
+##################################################################
+### Build Documentation
+##################################################################
+#pages:
+#    image:      jekyll/minimal:latest
+#    stage:      deploy
+#    tags:       [ Dedicated-Docker ]
+#    ################################################################################
+#    # Run Test Script
+#    script:
+#        - wget -qO - https://gitlab.com/badpixxel-robo/jekyll/-/raw/2.0/scripts/gitlab-pages.sh | sh
+#    artifacts:
+#        paths:
+#            - public
