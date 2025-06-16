@@ -1,9 +1,9 @@
 {
-    "name": "splash/symfony-user-bundle",
-    "description": "Splash Bundle for Symfony Users",
-    "license": "MIT",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "name":                 "splash/symfony-user-bundle",
+    "description":          "Splash Bundle for Symfony Users",
+    "license":              "MIT",
+    "minimum-stability":    "dev",
+    "prefer-stable":        true,
 
     "authors": [
         {
@@ -30,16 +30,18 @@
 
     "require": {
         "php":                                          "^8.0",
-        "splash/php-bundle":                            "dev-master"
+        "splash/php-bundle":                            "^2.0"
     },
     
     "require-dev": {
-        "badpixxel/php-sdk":                            "~2.0",
-        "splash/console":                               "dev-master",
+        "badpixxel/php-sdk":                            "^2.0",
+        "splash/console":                               "2.0.x-dev",
 
         "symfony/http-kernel":                          "^5.4",
         "symfony/framework-bundle":                     "^5.4",
         "symfony/runtime":                              "^5.4",
+        "symfony/property-access":                      "^5.4",
+        "symfony/mailer":                               "^5.4",
         "symfony/debug-pack":                           "^1.0",
         "symfony/profiler-pack":                        "^1.0",
         "symfony/phpunit-bridge":                       "*",
