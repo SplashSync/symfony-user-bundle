@@ -30,9 +30,6 @@
 #
 ################################################################################
 
-
-version: '2'
-
 services:
 
     ################################################################################
@@ -66,7 +63,7 @@ services:
     ################################################################################
     # Splash Toolkit Container
     toolkit:
-        image: 'splashsync/toolkit:alpine'
+        image:              'splashsync/toolkit:2.5'
         container_name:     toolkit.symfony-user.local
         volumes:
             # Specify Local Configuration File
