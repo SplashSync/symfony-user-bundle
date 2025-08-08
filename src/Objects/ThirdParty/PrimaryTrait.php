@@ -16,7 +16,7 @@
 namespace Splash\Connectors\SymfonyUser\Objects\ThirdParty;
 
 use Doctrine\ORM\QueryBuilder;
-use Splash\Client\Splash;
+use Splash\Core\Client\Splash;
 
 trait PrimaryTrait
 {
@@ -31,7 +31,7 @@ trait PrimaryTrait
         //====================================================================//
         // Extract User Email
         $email = $keys["email"] ?? null;
-        if (empty($email) || !is_string($email)) {
+        if (empty($email)) {
             return null;
         }
         //====================================================================//

@@ -13,24 +13,13 @@
  *  file that was distributed with this source code.
  */
 
-namespace Splash\Connectors\SymfonyUser\Tests;
+namespace Splash\Connectors\SymfonyUser\Tests\Bundle;
 
-use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
-use Symfony\Component\HttpKernel\Kernel as BaseKernel;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Symfony Kernel for testing
+ * Splash Symfony User Tests Bundle Class
  */
-class Kernel extends BaseKernel
+class SplashSymfonyUserTestsBundle extends Bundle
 {
-    use MicroKernelTrait;
-
-    /**
-     * Gets the path to the configuration directory.
-     */
-    protected function getConfigDir(): string
-    {
-        return $this->getProjectDir().'/tests/config';
-    }
-
 }

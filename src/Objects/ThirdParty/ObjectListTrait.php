@@ -55,9 +55,9 @@ trait ObjectListTrait
     {
         return array(
             'id' => method_exists($user, "getId") ? $user->getId() : null,
-            'username' => method_exists($user, "getUsername") ? $user->getUsername() : null,
+            'username' => $user->getUserIdentifier(),
             'email' => method_exists($user, "getEmail") ? $user->getEmail() : null,
-            'enabled' => method_exists($user, "getEmail") ? $user->getEmail() : null,
+            'enabled' => method_exists($user, "isEnabled") ? $user->isEnabled() : null,
         );
     }
 }

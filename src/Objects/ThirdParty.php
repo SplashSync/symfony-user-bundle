@@ -18,10 +18,9 @@ namespace Splash\Connectors\SymfonyUser\Objects;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Splash\Bundle\Models\AbstractStandaloneObject;
-use Splash\Models\Objects\GenericFieldsTrait;
-use Splash\Models\Objects\IntelParserTrait;
-use Splash\Models\Objects\ListsTrait;
-use Splash\Models\Objects\PrimaryKeysAwareInterface;
+use Splash\Core\Models\Objects\GenericFieldsTrait;
+use Splash\Core\Models\Objects\IntelParserTrait;
+use Splash\Core\Interfaces\Object\PrimaryKeysAwareInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -33,7 +32,6 @@ class ThirdParty extends AbstractStandaloneObject implements PrimaryKeysAwareInt
     // Splash Php Core Traits
     use IntelParserTrait;
     use GenericFieldsTrait;
-    use ListsTrait;
 
     //====================================================================//
     // FOS USER Traits

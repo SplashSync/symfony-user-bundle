@@ -15,6 +15,9 @@
 #
 ################################################################################
 
+# Voir
+# https://gitlab.com/SplashSync/Php-Bundle/-/blob/3.0/.gitlab-ci.yml?ref_type=heads
+
 ################################################################
 # Include Pipeline Templates
 include:

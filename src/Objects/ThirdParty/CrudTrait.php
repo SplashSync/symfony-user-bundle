@@ -15,7 +15,7 @@
 
 namespace Splash\Connectors\SymfonyUser\Objects\ThirdParty;
 
-use Splash\Client\Splash;
+use Splash\Core\Client\Splash;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -88,7 +88,7 @@ trait CrudTrait
         }
         //====================================================================//
         // Create New User Entity
-        /** @var UserInterface $className */
+        /** @var class-string<UserInterface> $className */
         $this->object = new $className();
         if (method_exists($this->object, "setUsername")) {
             $this->object->setUsername($userName);

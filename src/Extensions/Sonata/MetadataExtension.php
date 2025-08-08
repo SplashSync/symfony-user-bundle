@@ -16,8 +16,9 @@
 namespace Splash\Connectors\SymfonyUser\Extensions\Sonata;
 
 use Sonata\UserBundle\Entity\BaseUser;
-use Splash\Components\FieldsFactory;
-use Splash\Models\ObjectExtensionInterface;
+use Splash\Core\Components\FieldsFactory;
+use Splash\Core\Dictionary\SplFields;
+use Splash\Core\Interfaces\Extensions\ObjectExtensionInterface;
 
 /**
  * Use Splash Objects Extension to add Sonata User fields on ThirdParty Objects
@@ -39,7 +40,7 @@ class MetadataExtension implements ObjectExtensionInterface
     {
         //====================================================================//
         // Creation Date
-        $factory->create(SPL_T_DATETIME)
+        $factory->create(SplFields::DATETIME)
             ->identifier("createdAt")
             ->name("Created")
             ->group("Meta")
@@ -48,7 +49,7 @@ class MetadataExtension implements ObjectExtensionInterface
         ;
         //====================================================================//
         // Update Date
-        $factory->create(SPL_T_DATETIME)
+        $factory->create(SplFields::DATETIME)
             ->identifier("updatedAt")
             ->name("Updated")
             ->group("Meta")
@@ -72,12 +73,12 @@ class MetadataExtension implements ObjectExtensionInterface
         switch ($fieldId) {
             case 'createdAt':
                 $date = $object->getCreatedAt();
-                $fieldData = $date ? $date->format(SPL_T_DATETIMECAST) : "";
+                $fieldData = $date ? $date->format('Y-m-d H:i:s') : "";
 
                 return true;
             case 'updatedAt':
                 $date = $object->getUpdatedAt();
-                $fieldData = $date ? $date->format(SPL_T_DATETIMECAST) : "";
+                $fieldData = $date ? $date->format('Y-m-d H:i:s') : "";
 
                 return true;
             default:

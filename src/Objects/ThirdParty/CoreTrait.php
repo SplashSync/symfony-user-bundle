@@ -15,7 +15,7 @@
 
 namespace Splash\Connectors\SymfonyUser\Objects\ThirdParty;
 
-use Splash\Models\Helpers\InlineHelper;
+use Splash\Core\Dictionary\SplFields;
 
 /**
  * Core Fields (Required)
@@ -24,14 +24,12 @@ trait CoreTrait
 {
     /**
      * Build Fields using FieldFactory
-     *
-     * @return void
      */
-    protected function buildCoreFields()
+    protected function buildCoreFields(): void
     {
         //====================================================================//
         // Username
-        $this->fieldsFactory()->create(SPL_T_VARCHAR)
+        $this->fieldsFactory()->create(SplFields::VARCHAR)
             ->identifier("username")
             ->name("Username")
             ->isLogged()
@@ -42,7 +40,7 @@ trait CoreTrait
         ;
         //====================================================================//
         // Email
-        $this->fieldsFactory()->create(SPL_T_EMAIL)
+        $this->fieldsFactory()->create(SplFields::EMAIL)
             ->identifier("email")
             ->name("Email")
             ->microData("http://schema.org/ContactPoint", "email")
@@ -52,14 +50,14 @@ trait CoreTrait
         ;
         //====================================================================//
         // Roles
-        $this->fieldsFactory()->create(SPL_T_INLINE)
+        $this->fieldsFactory()->create(SplFields::TEXT)
             ->identifier("roles")
             ->name("User Roles")
             ->isReadOnly()
         ;
         //====================================================================//
         // Active
-        $this->fieldsFactory()->create(SPL_T_BOOL)
+        $this->fieldsFactory()->create(SplFields::BOOL)
             ->identifier("enabled")
             ->name("Enabled")
             ->microData("http://schema.org/Organization", "active")
@@ -86,7 +84,7 @@ trait CoreTrait
 
                 break;
             case 'roles':
-                $this->out[$fieldName] = InlineHelper::fromArray($this->object->getRoles());
+                $this->out[$fieldName] = implode(',', $this->object->getRoles());
 
                 break;
             case 'enabled':
@@ -108,7 +106,7 @@ trait CoreTrait
      *
      * @return void
      */
-    protected function setCoreFields(string $fieldName, ?string $fieldData)
+    protected function setCoreFields(string $fieldName, ?string $fieldData): void
     {
         //====================================================================//
         // WRITE Field
@@ -132,7 +130,7 @@ trait CoreTrait
      *
      * @return void
      */
-    protected function setCoreBoolFields(string $fieldName, ?bool $fieldData)
+    protected function setCoreBoolFields(string $fieldName, ?bool $fieldData): void
     {
         switch ($fieldName) {
             case 'enabled':

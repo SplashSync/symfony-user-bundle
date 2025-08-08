@@ -1,0 +1,6 @@
+
+################################################################################
+# SPLASH Php Bundle Routes
+splash_bundle:
+    resource: "@SplashBundle/Resources/config/routing.php"
+    prefix: /ws

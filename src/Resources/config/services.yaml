@@ -1,7 +1,8 @@
 
 services:
     _defaults:
-        autowire: true
+        autowire:       true
+        autoconfigure:  true
 
     ########################################################################
     # Symfony Users Standalone Object Service
@@ -13,9 +14,6 @@ services:
           - { name: "splash.standalone.object", type : "ThirdParty" }
 
     ########################################################################
-    # SymfonyUser Users Events EventSubscriber
-    Splash\Connectors\SymfonyUser\EventSubscriber\DoctrineEventsSubscriber:
-        arguments:
-            - "@splash.connectors.manager"
-        tags:
-            - { name: 'doctrine.event_subscriber', priority: -1 }
+    # SymfonyUser Users Events Listener
+    Splash\Connectors\SymfonyUser\EventListener\:
+        resource: '../../EventListener'
