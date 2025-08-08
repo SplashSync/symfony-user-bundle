@@ -32,5 +32,4 @@ class Kernel extends BaseKernel
     {
         return $this->getProjectDir().'/tests/config';
     }
-
 }
