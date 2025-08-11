@@ -28,6 +28,7 @@
 #    172.121.0.64    	sf6.symfony-user.local
 #    172.121.0.54    	sf5.symfony-user.local
 #    172.121.0.44    	sf4.symfony-user.local
+#    172.121.0.100    	toolkit.symfony-user.local
 #
 ################################################################################
 
@@ -36,118 +37,87 @@ name: "splash-symfony-user"
 services:
 
     ################################################################################
-    # Application Container (Symfony 7.x - Version actuelle)
+    # Application Container (Symfony 7.x - Current Version)
     app:
-        image:          "registry.gitlab.com/badpixxel-projects/php-sdk:php-8.3"
-        command:        sh /var/www/html/docker/app/docker-entrypoint.sh
+        image:          "registry.gitlab.com/badpixxel-projects/php-sdk:php-8.4"
         container_name: app.symfony-user.local
         hostname:       app.symfony-user.local
+        tty:            true
         volumes:
             - ./:/var/www/html
-            - ./docker/app/000-default.conf:/etc/apache2/sites-available/000-default.conf
             - app-var:/var/www/html/var
             - app-vendor:/var/www/html/vendor
         environment:
             COMPOSER_ROOT_VERSION:  3.0.x-dev
+            SERVER_ROOT:            /var/www/html/tests/public
         networks:
             default:        { ipv4_address: 172.121.0.10, aliases: [ app.symfony-user.local ] }
 
     ################################################################################
     # Symfony 7 + PHP 8.3
     sf7:
-      image:          "registry.gitlab.com/badpixxel-projects/php-sdk:php-8.3"
-      command:        sh /var/www/html/docker/app/docker-entrypoint.sh
-      container_name: sf7.symfony-user.local
-      hostname:       sf7.symfony-user.local
-      volumes:
-          - ./:/var/www/html
-          - ./docker/app/000-default.conf:/etc/apache2/sites-available/000-default.conf
-          - sf7-var:/var/www/html/var
-          - sf7-vendor:/var/www/html/vendor
-      environment:
-          SYMFONY_REQUIRE:        7.*
-          COMPOSER_ROOT_VERSION:  3.0.x-dev
-      networks:
-          default:        { ipv4_address: 172.121.0.74, aliases: [ sf7.symfony-user.local ] }
+        image:          "registry.gitlab.com/badpixxel-projects/php-sdk:php-8.3"
+        container_name: sf7.symfony-user.local
+        hostname:       sf7.symfony-user.local
+        tty:            true
+        volumes:
+            - ./:/var/www/html
+            - sf7-var:/var/www/html/var
+            - sf7-vendor:/var/www/html/vendor
+        environment:
+            SYMFONY_REQUIRE:        7.*
+            COMPOSER_ROOT_VERSION:  3.0.x-dev
+            SERVER_ROOT:            /var/www/html/tests/public
+        networks:
+            default:        { ipv4_address: 172.121.0.74, aliases: [ sf7.symfony-user.local ] }
 
     ################################################################################
     # Symfony 6 + PHP 8.2
     sf6:
-      image:          "registry.gitlab.com/badpixxel-projects/php-sdk:php-8.2"
-      command:        sh /var/www/html/docker/app/docker-entrypoint.sh
-      container_name: sf6.symfony-user.local
-      hostname:       sf6.symfony-user.local
-      volumes:
-          - ./:/var/www/html
-          - ./docker/app/000-default.conf:/etc/apache2/sites-available/000-default.conf
-          - sf6-var:/var/www/html/var
-          - sf6-vendor:/var/www/html/vendor
-      environment:
-          SYMFONY_REQUIRE:        6.4.*
-          COMPOSER_ROOT_VERSION:  3.0.x-dev
-      networks:
-          default:        { ipv4_address: 172.121.0.64, aliases: [ sf6.symfony-user.local ] }
+        image:          "registry.gitlab.com/badpixxel-projects/php-sdk:php-8.2"
+        container_name: sf6.symfony-user.local
+        hostname:       sf6.symfony-user.local
+        tty:            true
+        volumes:
+            - ./:/var/www/html
+            - sf6-var:/var/www/html/var
+            - sf6-vendor:/var/www/html/vendor
+        environment:
+            SYMFONY_REQUIRE:        6.4.*
+            COMPOSER_ROOT_VERSION:  3.0.x-dev
+            SERVER_ROOT:            /var/www/html/tests/public
+        networks:
+            default:        { ipv4_address: 172.121.0.64, aliases: [ sf6.symfony-user.local ] }
 
     ################################################################################
     # Symfony 5 + PHP 8.1
     sf5:
         image:          "registry.gitlab.com/badpixxel-projects/php-sdk:php-8.1"
-        command:        sh /var/www/html/docker/app/docker-entrypoint.sh
         container_name: sf5.symfony-user.local
         hostname:       sf5.symfony-user.local
+        tty:            true
         volumes:
-          - ./:/var/www/html
-          - ./docker/app/000-default.conf:/etc/apache2/sites-available/000-default.conf
-          - sf5-var:/var/www/html/var
-          - sf5-vendor:/var/www/html/vendor
+            - ./:/var/www/html
+            - sf5-var:/var/www/html/var
+            - sf5-vendor:/var/www/html/vendor
         environment:
-          SYMFONY_REQUIRE:        5.4.*
-          COMPOSER_ROOT_VERSION:  3.0.x-dev
+            SYMFONY_REQUIRE:        5.4.*
+            COMPOSER_ROOT_VERSION:  3.0.x-dev
         networks:
-          default:        { ipv4_address: 172.121.0.54, aliases: [ sf5.symfony-user.local ] }
+            default:        { ipv4_address: 172.121.0.54, aliases: [ sf5.symfony-user.local ] }
 
-
-#    ################################################################################
-#    # MariaDb Container
-#    mariadb:
-#        image: mariadb:10
-#        container_name: db.symfony-user.local
-#        logging: { driver: "none" }
-#        environment:
-#            - "MYSQL_ROOT_PASSWORD=SPLASH_CI"
-#            - "MYSQL_DATABASE=SymfonyUsers"
-#        command: [ '--sql_mode=NO_ENGINE_SUBSTITUTION' ]
-#        hostname: mysql.splashsync.front
-#        networks:
-#            symfony-user:   { ipv4_address: 172.121.0.101, aliases: [ db.splashsync.local ] }
-#
-#    ################################################################################
-#    # Splash Toolkit Container
-#    toolkit:
-#        image:              'splashsync/toolkit:2.5'
-#        container_name:     toolkit.symfony-user.local
-#        volumes:
-#            # Specify Local Configuration File
-#            - './docker/toolkit/splash.yml:/app/config/packages/splash.yml:ro'
-#        hostname:           toolkit.symfony-user.local
-#        networks:
-#            symfony-user:   { ipv4_address: 172.121.0.100, aliases: [ toolkit.symfony-user.local ] }
-#            splashsync:     { aliases: [ toolkit.symfony-user.local ] }
-#
-#    ################################################################################
-#    # PhpMyAdmin Container
-#    phpmyadmin:
-#        image: phpmyadmin/phpmyadmin:5
-#        container_name: phpmyadmin.symfony-user.local
-#        depends_on:
-#            - mariadb
-#        environment:
-#            - PMA_HOST=mariadb
-#            - MYSQL_USER=Splash
-#            - MYSQL_ROOT_PASSWORD=SPLASH_CI
-#            - MYSQL_PASSWORD=SPLASH_CI
-#        networks:
-#            symfony-user:        { ipv4_address: 172.121.0.200, aliases: [ phpmyadmin.symfony-user.local ] }
+    ################################################################################
+    # Splash Toolkit Container
+    toolkit:
+        image:              'splashsync/toolkit:3.0'
+        container_name:     toolkit.symfony-user.local
+        volumes:
+            # Specify Local Configuration File
+            - './docker/toolkit/splash.yaml:/app/config/packages/splash.yaml:ro'
+        hostname:           toolkit.symfony-user.local
+        networks:
+            default:   { ipv4_address: 172.121.0.100, aliases: [ toolkit.symfony-user.local ] }
+            splashsync:     { aliases: [ toolkit.symfony-user.local ] }
 
 volumes:
     app-var:        ~
