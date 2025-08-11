@@ -67,8 +67,7 @@
             "cache:clear --env=test": "symfony-cmd",
             "assets:install --relative": "symfony-cmd",
             "doctrine:schema:update --force --complete --no-interaction --no-debug": "symfony-cmd",
-            "find var/cache/dev/*.xml | while read -r i; do cp -f \"$i\" var/cache/dev/testContainer.xml; done": "script",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "find var/cache/dev/*.xml | while read -r i; do cp -f \"$i\" var/cache/dev/testContainer.xml; done": "script"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -86,6 +85,10 @@
             "phpro/grumphp-shim": true,
             "symfony/flex": true
         }
+    },
+
+    "extra": {
+        "public-dir": "tests/public"
     },
 
     "archive": {
