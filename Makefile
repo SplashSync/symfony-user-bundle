@@ -26,6 +26,7 @@ verify:	# Verify Code in All Containers
 
 .PHONY: phpstan
 phpstan:	# Execute Php Stan in All Containers
+	$(MAKE) up
 	$(MAKE) all COMMAND="php vendor/bin/grumphp run --testsuite=phpstan"
 
 .PHONY: test
@@ -40,7 +41,7 @@ logs: 	## Show Symfony 7 Containers Logs
 
 .PHONY: all
 all: # Execute a Command in All Containers
-	@$(foreach service,$(shell docker compose config --services | sort), \
+	@$(foreach service,$(shell docker compose config --services | grep -v "toolkit" | sort), \
 		set -e; \
 		echo "$(COLOR_CYAN) >> Executing '$(COMMAND)' in container: $(service) $(COLOR_RESET)"; \
 		docker compose exec $(service) bash -c "$(COMMAND)"; \

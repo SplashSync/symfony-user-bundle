@@ -24,10 +24,11 @@
 
     <php>
         <server name="KERNEL_CLASS" value="Splash\Connectors\SymfonyUser\Tests\Kernel" />
+        <env    name="APP_DEBUG" value="false" />
         <env    name="SYMFONY_DEPRECATIONS_HELPER" value="disabled" force="true"/>
         <server name="SERVER_NAME" value="http://localhost"/>
         <const  name="SPLASH_DEBUG" value="true" />
         <server name="SPLASH_TRAVIS" value="true" />
-   </php>
+    </php>
     
 </phpunit>
