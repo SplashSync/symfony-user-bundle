@@ -17,7 +17,7 @@ namespace Splash\Connectors\SymfonyUser\EventListener;
 
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Events;
-use Splash\Bundle\Helpers\Doctrine\AbstractEntityListener;
+use Splash\Bundle\Helpers\Doctrine\AbstractDoctrineListener;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -26,7 +26,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[AsDoctrineListener(event: Events::postPersist)]
 #[AsDoctrineListener(event: Events::postUpdate)]
 #[AsDoctrineListener(event: Events::preRemove)]
-class DoctrineEventsSubscriber extends AbstractEntityListener
+class DoctrineEventsSubscriber extends AbstractDoctrineListener
 {
     /**
      * {@inheritdoc}
@@ -36,38 +36,5 @@ class DoctrineEventsSubscriber extends AbstractEntityListener
         return array(
             UserInterface::class => "ThirdParty",
         );
-    }
-
-    /**
-     * On Entity Created Doctrine Event
-     */
-    public function postPersist(object $subject): void
-    {
-        if (!$subject instanceof UserInterface) {
-            return;
-        }
-        parent::postPersist($subject);
-    }
-
-    /**
-     * On Entity Updated Doctrine Event
-     */
-    public function postUpdate(object $subject): void
-    {
-        if (!$subject instanceof UserInterface) {
-            return;
-        }
-        parent::postUpdate($subject);
-    }
-
-    /**
-     * On Entity Before Deleted Doctrine Event
-     */
-    public function preRemove(object $subject): void
-    {
-        if (!$subject instanceof UserInterface) {
-            return;
-        }
-        parent::preRemove($subject);
     }
 }
