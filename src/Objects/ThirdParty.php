@@ -18,9 +18,9 @@ namespace Splash\Connectors\SymfonyUser\Objects;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Splash\Bundle\Models\AbstractStandaloneObject;
+use Splash\Core\Interfaces\Object\PrimaryKeysAwareInterface;
 use Splash\Core\Models\Objects\GenericFieldsTrait;
 use Splash\Core\Models\Objects\IntelParserTrait;
-use Splash\Core\Interfaces\Object\PrimaryKeysAwareInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
