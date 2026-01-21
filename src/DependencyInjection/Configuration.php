@@ -15,8 +15,11 @@
 
 namespace Splash\Connectors\SymfonyUser\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Webmozart\Assert\Assert;
 
 /**
  * This is the class that validates and merges configuration from your app/config files.
@@ -29,22 +32,22 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('splash_symfony_user');
+        /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
 
-        /** @phpstan-ignore-next-line  */
-        $rootNode
-            ->children()
-            //====================================================================//
-            // User Class
-            //====================================================================//
+        $userNode = $rootNode->children();
+        //====================================================================//
+        // User Class
+        //====================================================================//
+        $userNode
             ->arrayNode('class')
             ->addDefaultsIfNotSet()
             ->children()
             ->scalarNode('user')->isRequired()->cannotBeEmpty()
             ->info('Your Symfony User Local Class.')
             ->end()
-            ->end()
         ;
+        $rootNode->end();
 
         return $treeBuilder;
     }
