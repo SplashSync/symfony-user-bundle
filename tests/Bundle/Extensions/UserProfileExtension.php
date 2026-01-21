@@ -15,15 +15,14 @@
 
 namespace Splash\Connectors\SymfonyUser\Tests\Bundle\Extensions;
 
+use \Splash\Core\Dictionary\SplFields;
 use Splash\Connectors\SymfonyUser\Tests\Bundle\Entity\User;
 use Splash\Core\Components\FieldsFactory;
 use Splash\Core\Interfaces\Extensions\ObjectExtensionInterface;
 use Splash\Core\Models\Objects\GenericFieldsTrait;
 use Splash\Core\Models\Objects\UpdateFlagTrait;
-use \Splash\Core\Dictionary\SplFields;
 
 /**
- *
  * Use Splash Objects Extension to add custom Local fields to ThirdParty Objects
  */
 class UserProfileExtension implements ObjectExtensionInterface
