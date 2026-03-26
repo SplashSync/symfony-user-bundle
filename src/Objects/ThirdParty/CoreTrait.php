@@ -16,6 +16,7 @@
 namespace Splash\Connectors\SymfonyUser\Objects\ThirdParty;
 
 use Splash\Core\Dictionary\SplFields;
+use Splash\Core\Helpers\InlineHelper;
 
 /**
  * Core Fields (Required)
@@ -50,7 +51,7 @@ trait CoreTrait
         ;
         //====================================================================//
         // Roles
-        $this->fieldsFactory()->create(SplFields::TEXT)
+        $this->fieldsFactory()->create(SplFields::INLINE)
             ->identifier("roles")
             ->name("User Roles")
             ->isReadOnly()
@@ -84,7 +85,7 @@ trait CoreTrait
 
                 break;
             case 'roles':
-                $this->out[$fieldName] = implode(',', $this->object->getRoles());
+                $this->out[$fieldName] = InlineHelper::fromArray($this->object->getRoles());
 
                 break;
             case 'enabled':
